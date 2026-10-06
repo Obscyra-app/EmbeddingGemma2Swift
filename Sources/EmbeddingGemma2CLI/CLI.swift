@@ -10,6 +10,7 @@ struct Request: Decodable {
     var input_ids: [[Int]]?
     var attention_mask: [[Int]]?
     var repetitions: Int?
+    var batch_size: Int?
     var query: String?
     var documents: [String]?
     var images: [String]?
@@ -122,14 +123,17 @@ struct Request: Decodable {
             }
             texts = [EmbeddingTask.search.format(query)] + documents.map { EmbeddingTask.document.format($0) }
         }
+        let batchSize = request.batch_size ?? 8
+        guard batchSize > 0 else { throw EmbeddingError.invalid("batch_size must be positive") }
         for _ in 0..<repetitions {
             let t = Date()
             if let ids = request.input_ids, let mask = request.attention_mask {
                 tokenIDs = ids
                 embeddings = try await encoder.encodeTokens(ids:ids,mask:mask,dimensions:dimensions)
             } else {
-                tokenIDs = try await encoder.tokenize(texts,task:task)
-                embeddings = try await encoder.encode(texts,task:task,dimensions:dimensions)
+                let result = try await encoder.encodeBatched(texts,task:task,dimensions:dimensions,batchSize:batchSize)
+                tokenIDs = result.tokenIDs
+                embeddings = result.embeddings
             }
             elapsed.append(Date().timeIntervalSince(t))
         }

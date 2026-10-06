@@ -19,6 +19,11 @@ public enum EmbeddingTask: String, CaseIterable, Sendable {
     }
 }
 
+public struct TextEncodingResult: Sendable {
+    public let tokenIDs: [[Int]]
+    public let embeddings: [[Float]]
+}
+
 /// Serial actor keeps MLX execution off the UI actor and prevents overlapping forwards.
 public actor TextEncoder {
     private let model: TextModel
@@ -39,11 +44,29 @@ public actor TextEncoder {
         return rows
     }
     public func encode(_ texts: [String], task: EmbeddingTask = .raw, dimensions: Int = 768) throws -> [[Float]] {
+        try encodeBatched(texts,task:task,dimensions:dimensions,batchSize:texts.count).embeddings
+    }
+    /// Tokenizes once, groups similarly sized inputs to reduce padding, and restores input order.
+    public func encodeBatched(_ texts: [String], task: EmbeddingTask = .raw, dimensions: Int = 768, batchSize: Int) throws -> TextEncodingResult {
         let rows = try tokenize(texts,task:task)
-        let length = rows.map(\.count).max()!
-        let ids = rows.map { $0 + Array(repeating:0,count:length-$0.count) }
-        let mask = rows.map { Array(repeating:1,count:$0.count) + Array(repeating:0,count:length-$0.count) }
-        return try encodeTokens(ids:ids,mask:mask,dimensions:dimensions)
+        let plan = try Self.batchingPlan(lengths:rows.map(\.count),batchSize:batchSize)
+        var embeddings = Array(repeating:[Float](),count:rows.count)
+        for indices in plan {
+            let length = indices.map { rows[$0].count }.max()!
+            let ids = indices.map { rows[$0] + Array(repeating:0,count:length-rows[$0].count) }
+            let mask = indices.map { Array(repeating:1,count:rows[$0].count) + Array(repeating:0,count:length-rows[$0].count) }
+            for (index,vector) in zip(indices,try encodeTokens(ids:ids,mask:mask,dimensions:dimensions)) {
+                embeddings[index]=vector
+            }
+        }
+        return TextEncodingResult(tokenIDs:rows,embeddings:embeddings)
+    }
+    static func batchingPlan(lengths: [Int], batchSize: Int) throws -> [[Int]] {
+        guard batchSize > 0 else { throw EmbeddingError.invalid("Batch size must be positive") }
+        let sorted = lengths.indices.sorted { lengths[$0] == lengths[$1] ? $0 < $1 : lengths[$0] < lengths[$1] }
+        return stride(from:0,to:lengths.count,by:batchSize).map { start in
+            Array(sorted[start..<min(start+batchSize,lengths.count)])
+        }
     }
     public func encodeTokens(ids: [[Int]], mask: [[Int]], dimensions: Int = 768) throws -> [[Float]] {
         let values = try model.encode(ids:ids,mask:mask,dimensions:dimensions).embeddings.asArray(Float.self)
