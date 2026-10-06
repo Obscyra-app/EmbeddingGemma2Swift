@@ -1,6 +1,6 @@
 import XCTest
 import MLX
-import EmbeddingGemma2
+@testable import EmbeddingGemma2
 
 final class MaskTests: XCTestCase {
     func testLocalAttentionIsBidirectionalAndInclusive() {
@@ -24,5 +24,9 @@ final class MaskTests: XCTestCase {
         XCTAssertEqual(EmbeddingTask.search.format("Москва 😀"),"task: search result | query: Москва 😀")
         XCTAssertEqual(EmbeddingTask.document.format("текст",title:"Заголовок"),"title: Заголовок | text: текст")
         XCTAssertEqual(EmbeddingTask.raw.format("title: none | text: a"),"title: none | text: a")
+    }
+    func testBatchingPlanGroupsSimilarLengthsAndKeepsStableTies() throws {
+        XCTAssertEqual(try TextEncoder.batchingPlan(lengths:[8,2,7,2,9],batchSize:2),[[1,3],[2,0],[4]])
+        XCTAssertThrowsError(try TextEncoder.batchingPlan(lengths:[1],batchSize:0))
     }
 }

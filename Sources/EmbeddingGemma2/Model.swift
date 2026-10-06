@@ -96,13 +96,16 @@ public final class TextModel {
         if let key { y = y * weights[key+".weight"]!.asType(.float32) }
         return y.asType(x.dtype)
     }
-    private func rotary(_ x: MLXArray, positions: MLXArray, theta: Float) -> MLXArray {
-        let d = x.dim(-1), half = x.dim(-1)/2
-        let frequencies = 1 / pow(MLXArray(theta), MLXArray(stride(from: 0, to: d, by: 2)).asType(.float32) / Float(d))
+    private func rotaryTable(positions: MLXArray, dimension: Int, theta: Float) -> (cosine: MLXArray, sine: MLXArray) {
+        let frequencies = 1 / pow(MLXArray(theta), MLXArray(stride(from: 0, to: dimension, by: 2)).asType(.float32) / Float(dimension))
         let a = positions.asType(.float32).expandedDimensions(axis: -1) * frequencies
         let angles = concatenated([a,a], axis: -1).expandedDimensions(axis: 1)
+        return (cos(angles).asType(dtype),sin(angles).asType(dtype))
+    }
+    private func rotary(_ x: MLXArray, table: (cosine: MLXArray, sine: MLXArray)) -> MLXArray {
+        let half = x.dim(-1)/2
         let rotated = concatenated([-x[.ellipsis, half...], x[.ellipsis, ..<half]], axis: -1)
-        return x * cos(angles).asType(x.dtype) + rotated * sin(angles).asType(x.dtype)
+        return x * table.cosine + rotated * table.sine
     }
     public static func attentionMask(_ mask: MLXArray, length: Int, window: Int?) -> MLXArray {
         let full = mask.asType(.bool).reshaped(mask.dim(0), 1, 1, length)
@@ -143,15 +146,19 @@ public final class TextModel {
         let positions = MLXArray(0..<length).reshaped(1,length)
         let full = Self.attentionMask(padding,length:length,window:nil)
         let local = Self.attentionMask(padding,length:length,window:config.sliding_window)
+        var rotaryTables: [String:(cosine:MLXArray,sine:MLXArray)] = [:]
         for i in 0..<config.num_hidden_layers {
             let p = "layers.\(i).", a = p+"self_attn."
             let override = config.per_layer_config[String(format:"%02d",i)] ?? [:]
             let h = override["head_dim"] ?? config.head_dim, kv = override["num_key_value_heads"] ?? config.num_key_value_heads
             let kind = config.layer_types[i]
             let theta = config.rope_parameters[kind]!.rope_theta
+            let rotaryKey = "\(h):\(theta)"
+            let table = rotaryTables[rotaryKey] ?? rotaryTable(positions:positions,dimension:h,theta:theta)
+            rotaryTables[rotaryKey] = table
             let z = norm(x,p+"input_layernorm")
-            let q = rotary(norm(linear(z,a+"q_proj").reshaped(batch,length,config.num_attention_heads,h),a+"q_norm").transposed(0,2,1,3),positions:positions,theta:theta)
-            let k = rotary(norm(linear(z,a+"k_proj").reshaped(batch,length,kv,h),a+"k_norm").transposed(0,2,1,3),positions:positions,theta:theta)
+            let q = rotary(norm(linear(z,a+"q_proj").reshaped(batch,length,config.num_attention_heads,h),a+"q_norm").transposed(0,2,1,3),table:table)
+            let k = rotary(norm(linear(z,a+"k_proj").reshaped(batch,length,kv,h),a+"k_norm").transposed(0,2,1,3),table:table)
             let v = norm(linear(z,a+"v_proj").reshaped(batch,length,kv,h)).transposed(0,2,1,3)
             let attended = MLXFast.scaledDotProductAttention(queries:q,keys:k,values:v,scale:1,mask:.array(kind == "sliding_attention" ? local : full)).transposed(0,2,1,3).reshaped(batch,length,-1)
             x = x + norm(linear(attended,a+"o_proj"),p+"post_attention_layernorm")

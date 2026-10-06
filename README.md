@@ -236,7 +236,7 @@ eg2-embed /path/to/text-bf16 request.json
 {"query":"Как проверить целостность файла?","documents":["Сравните SHA-256 с эталоном.","Прогноз погоды на завтра."],"dimensions":768}
 ```
 
-Or `{"texts":["..."],"task":"document","dimensions":256,"repetitions":5}`. JSON output includes embeddings, tokens, load duration, encode durations and MLX memory counters; search requests include ranked documents. Encode duration includes tokenization, model execution and host output transfer; it must not be compared directly to forward-only benchmarks. `--float32` selects FP32 evaluation. For independent kernel checks, a request may contain rectangular `input_ids` and `attention_mask` arrays.
+Or `{"texts":["..."],"task":"document","dimensions":256,"batch_size":8,"repetitions":5}`. Text requests default to batches of 8, tokenize once, group similarly sized inputs to limit padding, and restore input order. JSON output includes embeddings, tokens, load duration, encode durations and MLX memory counters; search requests include ranked documents. Encode duration includes tokenization, model execution and host output transfer; it must not be compared directly to forward-only benchmarks. `--float32` selects FP32 evaluation. For independent kernel checks, a request may contain rectangular `input_ids` and `attention_mask` arrays.
 
 ## Validation and scope
 
