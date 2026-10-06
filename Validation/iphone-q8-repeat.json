@@ -1,0 +1,247 @@
+{
+  "pass": true,
+  "text_weight_format": "affine8-g64",
+  "checks": [
+    {
+      "case": "multilingual",
+      "mac_q8_maximum_absolute_difference": 0.0,
+      "mac_q8_minimum_cosine": 0.9999999999999998,
+      "seconds": 0.16035091876983643,
+      "pass": true
+    },
+    {
+      "case": "long",
+      "mac_q8_maximum_absolute_difference": 0.0,
+      "mac_q8_minimum_cosine": 0.9999999999999998,
+      "seconds": 0.4320070743560791,
+      "pass": true
+    },
+    {
+      "case": "landscape70",
+      "mac_q8_maximum_absolute_difference": 0.0,
+      "mac_q8_minimum_cosine": 1.0000000000000002,
+      "seconds": 0.2218860387802124,
+      "pass": true
+    },
+    {
+      "case": "portrait140",
+      "mac_q8_maximum_absolute_difference": 0.0,
+      "mac_q8_minimum_cosine": 1.0000000000000002,
+      "seconds": 0.42835402488708496,
+      "pass": true
+    },
+    {
+      "case": "square280",
+      "mac_q8_maximum_absolute_difference": 0.0,
+      "mac_q8_minimum_cosine": 0.9999999999999999,
+      "seconds": 0.9809850454330444,
+      "pass": true
+    },
+    {
+      "case": "downscale70",
+      "mac_q8_maximum_absolute_difference": 0.0,
+      "mac_q8_minimum_cosine": 1.0,
+      "seconds": 0.2661360502243042,
+      "pass": true
+    },
+    {
+      "case": "silence",
+      "mac_q8_maximum_absolute_difference": 0.0,
+      "mac_q8_minimum_cosine": 1.0,
+      "seconds": 0.04866909980773926,
+      "pass": true
+    },
+    {
+      "case": "tone",
+      "mac_q8_maximum_absolute_difference": 0.001901655225083232,
+      "mac_q8_minimum_cosine": 0.9999211631793109,
+      "seconds": 0.05957996845245361,
+      "pass": true
+    },
+    {
+      "case": "noise",
+      "mac_q8_maximum_absolute_difference": 0.0,
+      "mac_q8_minimum_cosine": 1.0000000000000002,
+      "seconds": 0.07388496398925781,
+      "pass": true
+    },
+    {
+      "case": "chirp",
+      "mac_q8_maximum_absolute_difference": 0.0,
+      "mac_q8_minimum_cosine": 0.9999999999999999,
+      "seconds": 0.14289402961730957,
+      "pass": true
+    }
+  ],
+  "official_reference_audit": {
+    "platform": "iOS",
+    "os": "Version 27.0 (Build 24A437)",
+    "load_seconds": 1.243710994720459,
+    "audio_load_seconds": 0.47355103492736816,
+    "memory": {
+      "mlx_active_bytes": 899242628,
+      "mlx_cache_bytes": 67193164,
+      "mlx_peak_bytes": 1000478592
+    },
+    "mlx_cache_limit_bytes": 67108864,
+    "audio_checks": [
+      {
+        "case": "silence",
+        "metadata_match": true,
+        "precision": "bfloat16",
+        "dimensions": 768,
+        "minimum_cosine": 0.9997743093406949,
+        "maximum_absolute_error": 0.0026729218661785126,
+        "maximum_norm_error": 4.176916812426157e-09,
+        "tokenization_match": true,
+        "pass": true,
+        "seconds": 0.04866909980773926,
+        "unquantized_mac_bf16_maximum_absolute_difference": 0.002616007812321186
+      },
+      {
+        "case": "tone",
+        "metadata_match": true,
+        "precision": "bfloat16",
+        "dimensions": 768,
+        "minimum_cosine": 0.9996201056985494,
+        "maximum_absolute_error": 0.0035259914729977027,
+        "maximum_norm_error": 3.6363960731478073e-09,
+        "tokenization_match": true,
+        "pass": true,
+        "seconds": 0.05957996845245361,
+        "unquantized_mac_bf16_maximum_absolute_difference": 0.0031506773084402084
+      },
+      {
+        "case": "noise",
+        "metadata_match": true,
+        "precision": "bfloat16",
+        "dimensions": 768,
+        "minimum_cosine": 0.9997095269089243,
+        "maximum_absolute_error": 0.002739153802394867,
+        "maximum_norm_error": 3.1751705709126554e-09,
+        "tokenization_match": true,
+        "pass": true,
+        "seconds": 0.07388496398925781,
+        "unquantized_mac_bf16_maximum_absolute_difference": 0.0024524442851543427
+      },
+      {
+        "case": "chirp",
+        "metadata_match": true,
+        "precision": "bfloat16",
+        "dimensions": 768,
+        "minimum_cosine": 0.9996332777438814,
+        "maximum_absolute_error": 0.0032970597967505455,
+        "maximum_norm_error": 9.091924213500135e-09,
+        "tokenization_match": true,
+        "pass": true,
+        "seconds": 0.14289402961730957,
+        "unquantized_mac_bf16_maximum_absolute_difference": 0.0023620277643203735
+      }
+    ],
+    "text_vision_audit": {
+      "platform": "iOS",
+      "os": "Version 27.0 (Build 24A437)",
+      "load_seconds": 1.243710994720459,
+      "vision_load_seconds": 0.1318420171737671,
+      "memory": {
+        "mlx_active_bytes": 899242628,
+        "mlx_cache_bytes": 67193164,
+        "mlx_peak_bytes": 1000478592
+      },
+      "mlx_cache_limit_bytes": 67108864,
+      "checks": [
+        {
+          "case": "landscape70",
+          "preprocessing_exact": true,
+          "precision": "bfloat16",
+          "dimensions": 768,
+          "minimum_cosine": 0.9997935768136113,
+          "maximum_absolute_error": 0.0023741498589515686,
+          "maximum_norm_error": 7.756937314695733e-10,
+          "tokenization_match": true,
+          "pass": true,
+          "seconds": 0.2218860387802124
+        },
+        {
+          "case": "portrait140",
+          "preprocessing_exact": true,
+          "precision": "bfloat16",
+          "dimensions": 768,
+          "minimum_cosine": 0.9997338514556677,
+          "maximum_absolute_error": 0.00291566364467144,
+          "maximum_norm_error": 7.715725836021647e-09,
+          "tokenization_match": true,
+          "pass": true,
+          "seconds": 0.42835402488708496
+        },
+        {
+          "case": "square280",
+          "preprocessing_exact": true,
+          "precision": "bfloat16",
+          "dimensions": 768,
+          "minimum_cosine": 0.9998867169036764,
+          "maximum_absolute_error": 0.0017663787584751844,
+          "maximum_norm_error": 5.6454755426038616e-08,
+          "tokenization_match": true,
+          "pass": true,
+          "seconds": 0.9809850454330444
+        },
+        {
+          "case": "downscale70",
+          "preprocessing_exact": true,
+          "precision": "bfloat16",
+          "dimensions": 768,
+          "minimum_cosine": 0.9998742684378646,
+          "maximum_absolute_error": 0.0017937030643224716,
+          "maximum_norm_error": 2.9197347983789257e-08,
+          "tokenization_match": true,
+          "pass": true,
+          "seconds": 0.2661360502243042
+        }
+      ],
+      "text_audit": {
+        "pass": true,
+        "platform": "iOS",
+        "os": "Version 27.0 (Build 24A437)",
+        "precision": "bfloat16",
+        "load_seconds": 1.243710994720459,
+        "memory": {
+          "mlx_active_bytes": 899242628,
+          "mlx_cache_bytes": 67193164,
+          "mlx_peak_bytes": 1000478592
+        },
+        "checks": [
+          {
+            "case": "multilingual",
+            "pass": true,
+            "minimum_cosine": 0.9996200972459777,
+            "maximum_absolute_error": 0.0039162199245765805,
+            "maximum_norm_error": 6.731355006728279e-08,
+            "tokenization_match_reported_by_device": true,
+            "encode_seconds": 0.16035091876983643
+          },
+          {
+            "case": "long",
+            "pass": true,
+            "minimum_cosine": 0.9998166304062315,
+            "maximum_absolute_error": 0.0028091520071029663,
+            "maximum_norm_error": 1.25980319509722e-08,
+            "tokenization_match_reported_by_device": true,
+            "encode_seconds": 0.4320070743560791
+          }
+        ],
+        "scope": "independent CPU recomputation from device vectors; token identity was checked inside app; not a quality benchmark"
+      },
+      "pass": true
+    },
+    "pass": true
+  },
+  "memory": {
+    "mlx_active_bytes": 899242628,
+    "mlx_cache_bytes": 67193164,
+    "mlx_peak_bytes": 1000478592
+  },
+  "load_seconds": 1.243710994720459,
+  "vision_load_seconds": 0.1318420171737671,
+  "audio_load_seconds": 0.47355103492736816
+}

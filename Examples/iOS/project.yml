@@ -1,0 +1,38 @@
+name: EmbeddingGemma2Demo
+options:
+  deploymentTarget:
+    iOS: '17.0'
+packages:
+  EmbeddingGemma2Swift:
+    path: ../..
+targets:
+  EmbeddingGemma2Demo:
+    type: application
+    platform: iOS
+    sources:
+      - path: DemoApp.swift
+      - path: Model
+        type: folder
+        buildPhase: resources
+      - path: Fixtures
+        type: folder
+        buildPhase: resources
+      - path: Vision
+        type: folder
+        buildPhase: resources
+      - path: Audio
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: EmbeddingGemma2Swift
+        product: EmbeddingGemma2
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: local.embeddinggemma2.validation
+        SWIFT_VERSION: '6.0'
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: EmbeddingGemma 2
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        TARGETED_DEVICE_FAMILY: '1,2'
+        CODE_SIGN_STYLE: Manual

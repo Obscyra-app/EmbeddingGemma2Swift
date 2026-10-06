@@ -1,0 +1,11 @@
+.build/
+.swiftpm/
+DerivedData/
+
+.build-xcode/
+
+models/
+runs/
+.venv/
+__pycache__/
+*.profraw

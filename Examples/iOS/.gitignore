@@ -1,0 +1,6 @@
+Model
+Vision
+Fixtures/
+*.xcodeproj/
+DerivedData/
+Audio

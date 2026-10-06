@@ -1,0 +1,210 @@
+{
+  "Package.swift": {
+    "bytes": 968,
+    "sha256": "29b699abe53386d06fa767821c58342985db6a60be22f0c08ede383d5dbb25f8"
+  },
+  "Package.resolved": {
+    "bytes": 2838,
+    "sha256": "4e883cea088f748202830eac98a21ad2017107f5299c829d136e0731cc0dee4c"
+  },
+  "README.md": {
+    "bytes": 17628,
+    "sha256": "438f91355c759b2c477a5fdfe8bd2654a4cc982d16325a8ead9e3019664efb9f"
+  },
+  "VALIDATION.md": {
+    "bytes": 4588,
+    "sha256": "2a0ef4d9a4f0056f4bb16c61e74a06fd9b2f9639d479f03e45f377be9d6866af"
+  },
+  "CHANGELOG.md": {
+    "bytes": 420,
+    "sha256": "b4d0a6a9146c88c7fe0d111da2fdefbc57546b79a42849308b74ed3eed0c124c"
+  },
+  "LICENSE": {
+    "bytes": 1089,
+    "sha256": "23d012d80ed24321510f95b75ed4ab6d3721685575aaaafaa553d28813c514be"
+  },
+  "NOTICE": {
+    "bytes": 1418,
+    "sha256": "6f2586f5926818ea8091ad7cf2683aa1942f17da1acabf0216176595a5ec704a"
+  },
+  "APACHE-2.0.txt": {
+    "bytes": 11358,
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  "UPSTREAM_MLX_VLM_LICENSE": {
+    "bytes": 1069,
+    "sha256": "f74c448746be3376e27dee43e2be9ec9d55f4820cd7466c603a6c7d1fd2d25b8"
+  },
+  "UPSTREAM_PILLOW_LICENSE": {
+    "bytes": 1453,
+    "sha256": "17f240ae101143707e5e7303a5d800450d9ccc7475b463cedb555cefdb3c6ece"
+  },
+  ".gitignore": {
+    "bytes": 91,
+    "sha256": "2a47f8d72bf233de105f8f87ae16e9062a02b3d44a3186c876ade02878651a67"
+  },
+  "requirements-reference.lock": {
+    "bytes": 570,
+    "sha256": "8567ba7cc73572220ee18fdfcb7253dc0dd19d8d19f18f9803466accd1c02173"
+  },
+  "Examples/iOS/DemoApp.swift": {
+    "bytes": 9363,
+    "sha256": "5c1f31997e16511f86a80b0a93731d7031d57696ea27e39e3e5e078f86a7a322"
+  },
+  "Examples/iOS/project.yml": {
+    "bytes": 1019,
+    "sha256": "9f4de7323cacdf432c508740fbbf8599fc25727eacfac2e23770dc6c6b432d53"
+  },
+  "Examples/iOS/README.md": {
+    "bytes": 2917,
+    "sha256": "9ec37f7c29809e848021d7dec04bfd5ecc992f56942d0eca3b36fe2b0f76d904"
+  },
+  "Examples/iOS/.gitignore": {
+    "bytes": 55,
+    "sha256": "402397a1861ee32642e416e7e1cfdceed3708a1828410e1d6b07148feef19e4b"
+  },
+  "Sources/EmbeddingGemma2/AudioModel.swift": {
+    "bytes": 9207,
+    "sha256": "49b53ca21324e996ff5609022fb83b99e73f7412a85a34daceef4ba7bd531286"
+  },
+  "Sources/EmbeddingGemma2/AudioProcessor.swift": {
+    "bytes": 4883,
+    "sha256": "ddefe34a324e7c2650f50d2bb7c72a8c6d4085cfdd8e02d37c13922949d6f74c"
+  },
+  "Sources/EmbeddingGemma2/Encoder.swift": {
+    "bytes": 6153,
+    "sha256": "c0c7d7b3c57334db8725939bb63afaf7dacf524d99a04e04fe16da339069d0e2"
+  },
+  "Sources/EmbeddingGemma2/ImageProcessor.swift": {
+    "bytes": 7929,
+    "sha256": "fbd5968c91652ec2bb48e5f5edd17b9ce6ed6c4a10790f37c055a5574942f731"
+  },
+  "Sources/EmbeddingGemma2/Model.swift": {
+    "bytes": 11345,
+    "sha256": "5317b84c597af0a97b585fb243561e1f8a2384ae747031363dfbba5f2b1bfe98"
+  },
+  "Sources/EmbeddingGemma2/Quantization.swift": {
+    "bytes": 7278,
+    "sha256": "ced9a97fc58f8dd316cbee0f2ed4dfdd5da3dc660098cd0b4ee93439f104d825"
+  },
+  "Sources/EmbeddingGemma2/VisionModel.swift": {
+    "bytes": 5846,
+    "sha256": "37b02536e0fca1085e3a7b3113c4b292777e75ed1030dcb2d30e87c132169726"
+  },
+  "Sources/EmbeddingGemma2CLI/CLI.swift": {
+    "bytes": 10560,
+    "sha256": "91b751b8fe750807e5e38e191ba977a1bd0d2793e41d5f7e8471648cdf3b3e6b"
+  },
+  "Tests/EmbeddingGemma2Tests/AudioTests.swift": {
+    "bytes": 1724,
+    "sha256": "4a3c46c6c44e610c49b9f556b90244694f50f8c2fc1393dc17222bf585f9a6e2"
+  },
+  "Tests/EmbeddingGemma2Tests/ImageTests.swift": {
+    "bytes": 1781,
+    "sha256": "36d68c068f0e8382efff3857116d28a5e2a33b78278da67c04bd32baf66fdff5"
+  },
+  "Tests/EmbeddingGemma2Tests/MaskTests.swift": {
+    "bytes": 1342,
+    "sha256": "7a1f07de970314e4e44562fa2734e018c132614ca19c87bca377f9059403b17a"
+  },
+  "Tests/EmbeddingGemma2Tests/QuantizationTests.swift": {
+    "bytes": 2178,
+    "sha256": "b42d78c540055bcc9183954050c20782ef1f0f17a319192f3398a7fc2df8df6f"
+  },
+  "scripts/audit.py": {
+    "bytes": 1702,
+    "sha256": "af196946c8528435d0f44d567f7ed26867d6626ec109ca63b1389eb4ea2cb31a"
+  },
+  "scripts/audit_audio.py": {
+    "bytes": 1552,
+    "sha256": "e9b613f77aa64293696d28718f85591c30a2a4775c9e6898cacb93fd8a957837"
+  },
+  "scripts/audit_audio_device.py": {
+    "bytes": 1747,
+    "sha256": "b2a3905efebf2b11ab1600e6403ffb00d5d75617c33c53ddfbe2082d68bd6bff"
+  },
+  "scripts/audit_ios.py": {
+    "bytes": 1772,
+    "sha256": "53d9b9ec4cb56c62453570a81e3974bda53ddc28b7f90ace34719378380264c6"
+  },
+  "scripts/audit_quant.py": {
+    "bytes": 1650,
+    "sha256": "ba1a6d2709ae67537dd42f29c42e603ee1383bc02e9819cb79dbf7059fca0024"
+  },
+  "scripts/audit_quant_device.py": {
+    "bytes": 1956,
+    "sha256": "83114b59510ce9a587902f09defcd6f2bc6f5aa56f66fc5407fdd1b80227780f"
+  },
+  "scripts/audit_vision.py": {
+    "bytes": 1670,
+    "sha256": "7588d347ada6bc296b7378594f65d499b18ea1845d5384c279cd04737ae718b0"
+  },
+  "scripts/audit_vision_device.py": {
+    "bytes": 1581,
+    "sha256": "c208b3a2f6c4d1a1ffab2bcabadcf2ff6ac78ded9d88503a951f735ead2200b5"
+  },
+  "scripts/check_audio_frontend.py": {
+    "bytes": 1638,
+    "sha256": "19295564be0cf543ddfaa6903c5fafe2ba34065ab2b5e98bcf33cab356194151"
+  },
+  "scripts/check_quant_rejections.py": {
+    "bytes": 1348,
+    "sha256": "3f6307901d27a50ed23dbe08c1030a52cb0e4b633ec2d1608b67fe55e40fabac"
+  },
+  "scripts/download_release.py": {
+    "bytes": 4120,
+    "sha256": "59783c287898c803f531eb82004d0bf63763c17571ca0407d73ade7f21d5aa5a"
+  },
+  "scripts/download_source.py": {
+    "bytes": 1848,
+    "sha256": "d538488223b0095193d5237c88667525dc476f6acffbc9c3dfe4667855b91280"
+  },
+  "scripts/guard.py": {
+    "bytes": 2837,
+    "sha256": "f90d0112719a8a968e3e02be914b2dbe832b97a407367a980b8c257a025b90ba"
+  },
+  "scripts/package_source.py": {
+    "bytes": 1566,
+    "sha256": "68c25526f0a16612df06b9e63389fcca33529780612a278d0c1a9d057e5710d0"
+  },
+  "scripts/prepare_audio_reference.py": {
+    "bytes": 4396,
+    "sha256": "b2e39b432f7ff314209140f3472f14329313e4193ea638325734412073d13091"
+  },
+  "scripts/prepare_processor_checks.py": {
+    "bytes": 2521,
+    "sha256": "2df341ce0611a91c51f51e0e55edcb19290d0c1789ff53191859d2edbe8cf6cf"
+  },
+  "scripts/prepare_quant_eval.py": {
+    "bytes": 5839,
+    "sha256": "43866baa3a1f0d919a27e117e731d2d89b62f7fdb221aa958e8f2af4b488d37f"
+  },
+  "scripts/prepare_reference.py": {
+    "bytes": 4934,
+    "sha256": "0609df3f6be79b8c132155fb045c7f636f560df9cd6f8aafb3804fbed6514a4c"
+  },
+  "scripts/prepare_vision_reference.py": {
+    "bytes": 4734,
+    "sha256": "3f5f1fc3876241ac288e96180ca670dc9b57f5b024a4580981acb24dd9a9482d"
+  },
+  "scripts/quant_cpu_reference.py": {
+    "bytes": 3483,
+    "sha256": "17dfee8ac894b22b055bb434e7f59b34ae011d51eaa2656a4eb48279cf973681"
+  },
+  "scripts/validate_mac.py": {
+    "bytes": 3349,
+    "sha256": "fab23ca13671b03f1ddb002589fa5b62661c7a84457ea44e867c6de147037062"
+  },
+  "Validation/iphone-q8-repeat.json": {
+    "bytes": 7880,
+    "sha256": "f843006a7c42c777ec99ae605b98cd4f8ba69bdac41057b3ca75f5739c0627a5"
+  },
+  "Validation/mac-audio.json": {
+    "bytes": 16232,
+    "sha256": "fc9bcf555a8b482c3e12c1483e8ba0140dfacece90738b053fa0f5ca35b37deb"
+  },
+  "Validation/mac-quantization.json": {
+    "bytes": 21363,
+    "sha256": "908b7c19bbf9f348638876b528e744c0daba44f9d092a767ac300c4d5dc1ff46"
+  }
+}
